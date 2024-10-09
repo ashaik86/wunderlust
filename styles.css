@@ -1,0 +1,805 @@
+/* Arshiya Babrin Shaik */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --fonts-Montserrat: Montserrat, sans-serif;
+    --fonts-molle: Molle, sans-serif;
+    --teal: #55BCD5;
+    --med-gray: #555;
+    --white: #fff;
+    --Yellow: #F6D64A;
+    --Purple: #9B26B0;
+    --Blue: #499BD2;
+    --Dark-Gray: #222222;
+    --Light-gray: #EAEAEA;
+    --Black: #000000;
+    --box-shadow: -0.5rem 0.5rem 1rem var(--med-gray);
+}
+
+html,
+body {
+    font-family: var(--fonts-Montserrat, sans-serif);
+    background-color: var(--white);
+    color: var(--Black, #000000);
+    line-height: 1.5;
+}
+
+h1 {
+    font-family: var(--fonts-molle, sans-serif);
+    font-size: 3rem;
+    font-style: normal;
+    text-align: left;
+}
+
+h2 {
+    font-family: var(--fonts-molle, sans-serif);
+    font-size: 2rem;
+    font-style: normal;
+    text-align: left;
+}
+
+/* Skip Link for Accessibility */
+#skip {
+    position: absolute;
+    left: -10000px;
+}
+
+#skip:focus {
+    position: static;
+    width: auto;
+    height: auto;
+}
+
+.sr-only {
+    position: absolute;
+    left: -10000px;
+}
+
+.sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+}
+
+/* Body and Grid Container */
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Header Styling */
+header {
+    padding-top: 1rem;
+    background-image: linear-gradient(to bottom, var(--teal), #fff);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+        "logo   nav"
+        "title  title"
+        "text   text";
+}
+
+header h1 {
+    grid-area: title;
+    font-size: 2.25rem;
+    font-weight: bold;
+    justify-self: start;
+    align-self: end;
+    padding: 0 0.5em;
+
+}
+
+header a {
+
+    grid-area: logo;
+    justify-self: start;
+    align-self: center;
+}
+
+header a img {
+    object-fit: contain;
+    max-width: 90%;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+nav {
+    grid-area: nav;
+}
+
+header p {
+    grid-area: text;
+    padding: 0 1em;
+}
+
+#toggle {
+    display: none;
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+
+
+
+/* Style the label to look like a button */
+#toggle+label {
+    display: inline-block;
+    margin-top: 1rem;
+    width: 100%;
+    text-align: center;
+    background-color: var(--Yellow, #F6D64A);
+    color: #000;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    user-select: none;
+}
+
+/* Change background and text color when the checkbox is checked */
+#toggle:checked+label {
+    background-color: #333;
+    color: #fff;
+
+}
+
+/* Hide the navigation menu by default */
+#menu-toggle ul {
+    display: none;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    gap: 1px;
+}
+
+li a {
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+#menu-toggle ul li {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--teal);
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #000;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid black;
+}
+
+/* Optional: Hover effect for interactivity */
+#menu-toggle ul li:hover {
+    background-color: var(--white);
+}
+
+/* Main Content */
+main {
+    margin: 2rem 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+main article div {
+    padding: 1rem;
+}
+
+article section div:not(.custom-select) {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+
+/* Intro Section comments */
+#intro {
+    text-align: left;
+}
+
+#intro h2 {
+    align-self: start;
+
+}
+
+#img-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 1rem;
+    padding: 0;
+}
+
+#intro p {
+    align-self: start;
+
+}
+
+#img-grid img {
+    width: 100%;
+    object-fit: contain;
+    height: auto;
+}
+
+#img-grid picture {
+
+    grid-column: 1 / -1;
+}
+
+/* Plan Your Trip Section */
+#plan {
+    padding: 5%;
+    text-align: left;
+    background-color: var(--Yellow, #F6D64A);
+}
+
+#plan h3 {
+    font-family: var(--fonts-molle, sans-serif);
+    font-size: 2rem;
+    margin: 1rem;
+    margin-bottom: 1rem;
+}
+
+#plan h4 {
+    font-family: var(--fonts-Montserrat, sans-serif);
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 1rem 0;
+
+}
+
+#plan section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--teal, #F6D64A);
+    padding: 2rem;
+    border-radius: 5px;
+    border: 3px solid white;
+    gap: 1rem;
+}
+
+#plan img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+/* Testimonials Section */
+#testimonials {
+    padding: 5%;
+    text-align: left;
+}
+
+#testimonials h3 {
+    font-family: var(--fonts-molle, sans-serif);
+    font-size: 2rem;
+    margin: 1rem;
+    margin-bottom: 1rem;
+
+
+}
+
+#testimonials section {
+    background-color: var(--white, #fff);
+    padding: 0rem;
+    align-items: center;
+    text-align: center;
+}
+
+#testimonials h4 {
+
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+
+}
+
+#testimonials p {
+
+    font-size: 1rem;
+    text-align: center;
+}
+
+#testimonials q::before {
+    content: '“';
+    /* Opening double quote */
+}
+
+#testimonials q::after {
+    content: '”';
+    /* Closing double quote */
+}
+
+#testimonials img {
+    width: 200px;
+    height: 200px;
+
+}
+
+/* About Section */
+#about {
+    padding: 5%;
+    text-align: left;
+    background-color: var(--Blue, #499BD2);
+}
+
+#about h3 {
+    font-family: var(--fonts-molle, sans-serif);
+    font-size: 2rem;
+    margin: 1rem;
+    margin-bottom: 1rem;
+
+
+}
+
+#about h4 {
+    font-family: var(--fonts-Montserrat, sans-serif);
+    font-size: 1rem;
+    font-weight: bold;
+    align-items: center;
+}
+
+#about section {
+    background-color: var(--Blue, #499BD2);
+    color: var(--black);
+    text-align: center;
+}
+
+#about div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+#about div section img {
+    max-height: 80px;
+    object-fit: contain;
+}
+
+/* Contact Section */
+#contact {
+    padding: 5%;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+#contact h3 {
+    font-family: var(--fonts-molle, sans-serif);
+    font-size: 2rem;
+    margin: 1rem;
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+}
+
+#contact legend {
+    font-weight: bold;
+    padding: 0 0 1.1rem 0;
+}
+
+#contact form {
+    display: grid;
+    gap: 1rem;
+}
+
+.form-required {
+
+    font-family: var(--fonts-Montserrat, sans-serif);
+    font-style: oblique;
+    font-weight: normal;
+    font-size: .4em;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+fieldset label {
+    padding-left: .25rem;
+}
+
+.radio-label {
+
+    padding: .25rem;
+    font-size: .75rem;
+
+}
+
+#names,
+#nums,
+#selects {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    gap: 0rem;
+    padding: 0 1rem;
+}
+
+form div label {
+    font-weight: bold;
+}
+
+#contact form div {
+    gap: .25rem;
+}
+
+label {
+
+    gap: 0.5rem;
+}
+
+.required {
+    color: Purple;
+}
+
+input[type="radio"] {
+    transform: scale(2.5);
+    margin-right: 0.5rem;
+    accent-color: var(--Purple, #9B26B0);
+    padding: 1rem;
+}
+
+.custom-select {
+    margin-bottom: 1rem;
+    padding: 0;
+    width: 100%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    margin-bottom: 1rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 3px solid var(--Purple, #9B26B0);
+    border-radius: 5px;
+    outline: none;
+}
+
+input[type="submit"] {
+    background-color: var(--Purple, #499BD2);
+    color: var(--white);
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 0.5rem;
+
+
+}
+
+/* Footer Section */
+footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--light-gray, #EAEAEA);
+    text-align: center;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Adjust layout @media query */
+@media (max-width : 680px) {
+    header:has(nav input#toggle:checked) {
+        grid-template-areas:
+            "nav  nav"
+            "logo logo"
+            "title title"
+            "text  text";
+    }
+
+    /* Shows the menu when the checkbox is checked */
+    #toggle:checked~ul {
+        display: block;
+        position: relative;
+
+    }
+}
+
+/* Adjust layout or elements for min width of 680px */
+@media (min-width : 680px) {
+
+    #img-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    header {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+            "logo title"
+            "logo text"
+            "nav  nav";
+    }
+
+    #toggle+label {
+        display: none;
+    }
+
+    #menu-toggle ul {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    #menu-toggle ul li {
+        font-size: 0.75rem;
+        margin: 2rem;
+        padding: 0.7rem;
+        background-color: var(--white);
+        border-bottom: 1px solid white;
+    }
+
+    #menu-toggle ul li:hover {
+        background-color: var(--Yellow, #F6D64A);
+        border: 0px;
+    }
+
+    #about div {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 1rem;
+    }
+
+    fieldset {
+        flex-direction: row;
+    }
+
+    input[type="submit"] {
+        align-self: flex-end;
+        width: 50%;
+    }
+
+    article section div:not(.custom-select) {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    footer {
+        flex-direction: row;
+        padding: 1rem 2rem;
+    }
+
+
+}
+
+
+/* Adjust layout for large screens 1024px */
+
+@media (min-width : 1024px) {
+    header {
+        min-height: 10rem;
+        display: grid;
+        grid-template-columns: 0.5fr 1fr 2fr;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            "logo title nav"
+            "logo text nav";
+    }
+
+    #toggle+label {
+        display: none;
+    }
+
+    #menu-toggle ul {
+        display: flex;
+        justify-content: space-around;
+        gap: 1rem;
+    }
+
+    #menu-toggle ul li {
+        padding: 0.7rem 2rem;
+
+    }
+
+    #img-grid {
+        grid-area: imgGrid;
+    }
+
+    #intro h2 {
+        grid-area: title;
+    }
+
+    #intro p {
+        grid-area: text;
+    }
+
+
+    #intro {
+        display: grid;
+        grid-template-areas:
+            "title imgGrid"
+            "text imgGrid"
+            ". imgGrid";
+    }
+
+
+    #contact form {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+    }
+
+    article section div:not(.custom-select) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 1rem;
+    }
+
+    footer> :first-child {
+        text-align: left;
+
+        flex-grow: 3;
+        flex-basis: 0;
+    }
+
+    footer>*:not(:first-child) {
+        text-align: right;
+        flex-grow: 1;
+        flex-basis: 0;
+    }
+
+}
